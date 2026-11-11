@@ -1,0 +1,130 @@
+---
+import { site, socials } from '../data/site';
+---
+
+<section class="section section--ink closing" id="contact" aria-labelledby="contact-title">
+  <div class="ring" aria-hidden="true" data-ring>
+    Clinton Tano &#9679; Law &#9679; Design &#9679; AI &#9679; Accra, Ghana &#9679;
+  </div>
+
+  <div class="wrap closing__inner">
+    <p class="eyebrow closing__eyebrow">Have a question where law meets AI?</p>
+    <h2 class="closing__title" id="contact-title">Write<br /><em>to me.</em></h2>
+    <a class="btn btn--paper closing__email" href={`mailto:${site.email}`}>
+      {site.email} <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+    </a>
+    <ul class="closing__links">
+      {
+        socials.map((s) => (
+          <li>
+            <a class="btn btn--ghost-paper btn--sm" href={s.href} target="_blank" rel="noopener me">
+              {s.label} <span class="btn__arrow" aria-hidden="true">&nearr;</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .closing {
+    display: grid;
+    place-items: center;
+    min-height: min(100vh, 920px);
+    overflow: hidden;
+    text-align: center;
+    perspective: 1600px;
+  }
+
+  .closing__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    justify-items: center;
+  }
+
+  .closing__eyebrow {
+    color: var(--grey-light);
+  }
+
+  .closing__title {
+    margin: 22px 0 40px;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(72px, 12vw, 200px);
+    line-height: 0.86;
+    letter-spacing: -0.03em;
+  }
+
+  .closing__email {
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: 14px;
+  }
+
+  .closing__links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  /* A slowly turning ring of type, set in 3D around the headline */
+  .ring {
+    --r: min(44vw, 560px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform-style: preserve-3d;
+    transform: rotateZ(-7deg) rotateX(-24deg);
+    pointer-events: none;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: transparent;
+  }
+
+  .ring :global(.ring__spin) {
+    position: absolute;
+    transform-style: preserve-3d;
+    animation: spin 46s linear infinite;
+    color: var(--paper);
+  }
+
+  .ring :global(.ring__ch) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1em;
+    margin: -0.6em 0 0 -0.5em;
+    text-align: center;
+    line-height: 1.2;
+    font-size: var(--fs, 28px);
+    transform: rotateY(var(--a)) translateZ(var(--r));
+    backface-visibility: hidden;
+  }
+
+  .ring :global(.ring__spin--back .ring__ch) {
+    transform: rotateY(var(--a)) translateZ(var(--r)) rotateY(180deg);
+    opacity: 0.22;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotateY(-360deg);
+    }
+  }
+
+  @media (max-width: 700px) {
+    .ring {
+      --r: 62vw;
+      top: 59%;
+      transform: rotateZ(-7deg) rotateX(-34deg);
+    }
+  }
+</style>

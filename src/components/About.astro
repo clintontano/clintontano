@@ -1,0 +1,212 @@
+---
+import { Picture } from 'astro:assets';
+import portrait from '../assets/portrait.jpg';
+---
+
+<section class="section about" id="about" aria-labelledby="about-title">
+  <div class="wrap about__intro">
+    <h2 class="label about__label" id="about-title">About</h2>
+    <p class="about__text" data-words>
+      I think like a lawyer and build like a designer. I studied law at the University of Ghana School of Law, class of
+      2026, and I live in Accra. Alongside the law I design interfaces in Figma and build apps with AI, so I rarely stay
+      on one side of the table. The work I care about needs both.
+    </p>
+  </div>
+
+  <div class="wrap about__grid">
+    <figure class="about__figure" data-reveal>
+      <div class="about__frame" data-parallax>
+        <Picture
+          src={portrait}
+          formats={['webp']}
+          widths={[480, 720, 960, 1280, portrait.width]}
+          sizes="(min-width: 900px) 42vw, 92vw"
+          alt="Clinton Tano seated in a wooden armchair in a warm study, wearing a brown pinstripe double-breasted suit. Shelves behind him hold books, a statue of Lady Justice, a gavel, a globe and an hourglass."
+          loading="lazy"
+          decoding="async"
+          quality={60}
+        />
+      </div>
+      <figcaption class="about__caption eyebrow">
+        <span>Fig. 01</span>
+        <span>Clinton Tano, Accra</span>
+      </figcaption>
+    </figure>
+
+    <div class="about__side">
+      <p class="about__lede" data-reveal>
+        Today that means Decidendi, which I founded to test how well AI models handle legal reasoning, with practising
+        legal experts doing the judging.
+      </p>
+      <p class="about__more" data-reveal style="--delay: 0.1s">
+        Before it, I worked on RoomBerl and Lorryfare. One helps students find the right roommate. The other tells you
+        when the next trotro is arriving.
+      </p>
+
+      <dl class="about__facts" data-reveal style="--delay: 0.2s">
+        <div>
+          <dt class="eyebrow">Based</dt>
+          <dd>Accra, Ghana</dd>
+        </div>
+        <div>
+          <dt class="eyebrow">Studied</dt>
+          <dd>University of Ghana School of Law, class of 2026</dd>
+        </div>
+        <div>
+          <dt class="eyebrow">Now</dt>
+          <dd>Founder, Decidendi</dd>
+        </div>
+        <div>
+          <dt class="eyebrow">Tools</dt>
+          <dd>Figma, and AI for the build</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__intro {
+    display: grid;
+    grid-template-columns: minmax(150px, 1fr) minmax(0, 3.2fr);
+    gap: 40px;
+  }
+
+  .about__label {
+    align-self: start;
+    padding-top: 0.9em;
+  }
+
+  .about__text {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 4.1vw, 66px);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    text-wrap: pretty;
+  }
+
+  .about__text :global(.w) {
+    opacity: 0.14;
+    transition: opacity 0.5s var(--ease-out);
+  }
+
+  .about__text :global(.w.is-on) {
+    opacity: 1;
+  }
+
+  .about__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: clamp(32px, 6vw, 110px);
+    align-items: end;
+    margin-top: clamp(64px, 9vw, 140px);
+    padding-top: clamp(32px, 4vw, 56px);
+    border-top: 1px solid var(--line-strong);
+  }
+
+  .about__frame {
+    position: relative;
+    aspect-ratio: 1482 / 2000;
+    overflow: hidden;
+    background: var(--paper-3);
+  }
+
+  .about__frame :global(picture) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Black and white until it is on screen, then the colour blooms in. */
+  .about__frame :global(img) {
+    width: 100%;
+    height: 110%;
+    object-fit: cover;
+    object-position: 50% 30%;
+    transform: translate3d(0, calc(var(--parallax, 0) * -9%), 0);
+    will-change: transform;
+  }
+
+  :global(.js) .about__frame :global(img) {
+    filter: grayscale(1) contrast(1.05);
+    transition: filter 1.8s var(--ease-out) 0.35s;
+  }
+
+  :global(.js) .about__figure.is-in .about__frame :global(img) {
+    filter: none;
+  }
+
+  .about__caption {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 14px;
+    color: var(--grey);
+  }
+
+  .about__lede {
+    max-width: 22ch;
+    font-family: var(--font-display);
+    font-size: clamp(30px, 3vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  .about__more {
+    max-width: 44ch;
+    margin-top: 22px;
+    color: var(--grey);
+    text-wrap: pretty;
+  }
+
+  .about__facts {
+    margin-top: clamp(36px, 5vw, 72px);
+    border-top: 1px solid var(--line-strong);
+  }
+
+  .about__facts > div {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 16px;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .about__facts dt {
+    color: var(--grey);
+  }
+
+  @media (max-width: 860px) {
+    .about__intro {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .about__label {
+      padding-top: 0;
+    }
+
+    .about__grid {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .about__facts > div {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about__frame :global(img),
+    :global(.js) .about__frame :global(img) {
+      height: 100%;
+      transform: none;
+      filter: none;
+    }
+  }
+</style>

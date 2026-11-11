@@ -1,0 +1,523 @@
+---
+import { decidendi, earlier } from '../data/site';
+---
+
+<section class="section section--tint work" id="work" aria-labelledby="work-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="section-title" id="work-title">Selected <em>work</em></h2>
+      <p class="eyebrow">01 now / 02 before</p>
+    </div>
+
+    <article class="feature" data-reveal>
+      <div class="stage stage--tall" data-tilt>
+        <span class="stage__tag">Now</span>
+        <span class="stage__no" aria-hidden="true">001</span>
+        <div class="stage__art" aria-hidden="true">
+          <svg class="sheet" viewBox="0 0 240 300" fill="none">
+            <rect class="sheet__page" x="20" y="10" width="200" height="280" rx="2"></rect>
+            <rect x="40" y="34" width="84" height="7" fill="currentColor"></rect>
+            <path d="M40 54h160" stroke="currentColor" stroke-width="1"></path>
+            <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <path d="M40 76h118M40 90h104M40 104h124"></path>
+              <path d="M40 132h112M40 146h126M40 160h82"></path>
+              <path d="M40 188h120M40 202h96"></path>
+              <!-- ticks and one cross in the margin -->
+              <path d="M184 86l5 5 9-11M184 142l5 5 9-11M186 190l10 10M196 190l-10 10"></path>
+            </g>
+            <!-- the flagged line -->
+            <path
+              d="M40 208c4-4 8 4 12 0s8 4 12 0 8 4 12 0 8 4 12 0 8 4 12 0 8 4 12 0 8 4 12 0 8 4 12 0"
+              stroke="currentColor"
+              stroke-width="1.2"></path>
+            <g stroke="currentColor" stroke-width="1.5">
+              <rect x="40" y="240" width="16" height="16" fill="currentColor"></rect>
+              <rect x="64" y="240" width="16" height="16" fill="currentColor"></rect>
+              <rect x="88" y="240" width="16" height="16" fill="currentColor"></rect>
+              <rect x="112" y="240" width="16" height="16"></rect>
+            </g>
+          </svg>
+          <svg class="stamp" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-linecap="round">
+            <circle cx="50" cy="50" r="46" stroke-width="2"></circle>
+            <circle cx="50" cy="50" r="38" stroke-width="1" stroke-dasharray="2 5"></circle>
+            <path d="M32 51l12 12 24-27" stroke-width="5" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+      </div>
+
+      <div class="feature__body">
+        <p class="kicker">No. 001 / {decidendi.role} / Legal reasoning evaluation</p>
+        <h3 class="feature__name">{decidendi.name}</h3>
+        <p class="feature__headline">“{decidendi.headline}”</p>
+        <p class="feature__summary">{decidendi.summary}</p>
+
+        <ol class="feature__list" aria-label="What the experts do">
+          {
+            decidendi.work.map((item, i) => (
+              <li>
+                <span class="feature__num">0{i + 1}</span>
+                <h4>{item.title}</h4>
+                <p>{item.body}</p>
+              </li>
+            ))
+          }
+        </ol>
+
+        <div class="feature__foot">
+          <p class="eyebrow">{decidendi.jurisdictions.join(' / ')}</p>
+          <a class="btn" href={decidendi.href} target="_blank" rel="noopener">
+            Visit {decidendi.domain} <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <div class="projects">
+      {
+        earlier.map((project, i) => (
+          <article class="project" data-reveal style={`--delay: ${i * 0.1}s`}>
+            <div class="stage" data-tilt>
+              <span class="stage__tag">Before</span>
+              <span class="stage__no" aria-hidden="true">00{i + 2}</span>
+              <div class="stage__art" aria-hidden="true">
+                {project.id === 'roomberl' ? (
+                  <svg class="art art--match" viewBox="0 0 320 180" fill="none">
+                    <circle class="art__a" cx="128" cy="90" r="58" />
+                    <circle class="art__b" cx="192" cy="90" r="58" />
+                    <path class="art__lens" d="M160 41.6a58 58 0 0 1 0 96.8a58 58 0 0 1 0-96.8Z" />
+                  </svg>
+                ) : (
+                  <svg class="art art--route" viewBox="0 0 320 180" fill="none">
+                    <path class="art__road" d="M20 132C76 132 84 52 140 52s70 74 118 74 30-52 44-74" />
+                    <path class="art__trip" pathLength="100" d="M20 132C76 132 84 52 140 52s70 74 118 74 30-52 44-74" />
+                    <circle class="art__stop" cx="20" cy="132" r="5" />
+                    <circle class="art__stop" cx="140" cy="52" r="5" />
+                    <circle class="art__stop" cx="258" cy="126" r="5" />
+                    <circle class="art__ping" cx="302" cy="52" r="7" />
+                    <circle class="art__end" cx="302" cy="52" r="7" />
+                  </svg>
+                )}
+              </div>
+            </div>
+            <div class="project__body">
+              <p class="kicker">
+                No. 00{i + 2} / Worked on / {project.kicker}
+              </p>
+              <h3 class="project__name">{project.name}</h3>
+              <p class="project__tagline">{project.tagline}</p>
+              <p class="project__summary">{project.summary}</p>
+              <a class="btn btn--ghost btn--sm" href={project.href} target="_blank" rel="noopener">
+                Visit {project.domain} <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+
+  /* ---------- Stage: a gridded plate that flips to ink on hover ---------- */
+  .stage {
+    --s-bg: var(--paper);
+    --s-fg: var(--ink);
+    --s-line: var(--line);
+    --s-ghost: var(--line-strong);
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--s-bg);
+    color: var(--s-fg);
+    border: 1px solid var(--s-line);
+    perspective: 1200px;
+    transition:
+      background-color 0.9s var(--ease-out),
+      color 0.9s var(--ease-out),
+      border-color 0.9s var(--ease-out);
+  }
+
+  /* Fills the height of the text column beside it */
+  .stage--tall {
+    aspect-ratio: auto;
+    min-height: clamp(420px, 44vw, 720px);
+  }
+
+  .stage::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(var(--s-line) 1px, transparent 1px) 0 0 / 100% 25%,
+      linear-gradient(90deg, var(--s-line) 1px, transparent 1px) 0 0 / 25% 100%;
+    opacity: 0.6;
+  }
+
+  .feature:hover .stage,
+  .project:hover .stage,
+  .stage.is-active {
+    --s-bg: var(--ink);
+    --s-fg: var(--paper);
+    --s-line: var(--line-inv);
+    --s-ghost: var(--line-inv-strong);
+  }
+
+  .stage__tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 1;
+    padding: 5px 9px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    background: var(--s-bg);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background-color 0.9s var(--ease-out);
+  }
+
+  .stage__no {
+    position: absolute;
+    right: 14px;
+    bottom: -0.16em;
+    font-family: var(--font-display);
+    font-size: clamp(90px, 10vw, 170px);
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--s-ghost);
+    pointer-events: none;
+  }
+
+  .stage__art {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform 0.7s var(--ease-out);
+  }
+
+  /* Decidendi: a marked answer sheet */
+  .sheet {
+    width: min(52%, 300px);
+    height: auto;
+    transform: rotateX(8deg) rotateY(-16deg) rotateZ(-3deg);
+    filter: drop-shadow(14px 18px 0 rgb(11 11 11 / 0.1));
+    transition: transform 0.9s var(--ease-out);
+  }
+
+  .sheet__page {
+    fill: var(--s-bg);
+    stroke: currentColor;
+    stroke-width: 1.5;
+    transition: fill 0.9s var(--ease-out);
+  }
+
+  .stamp {
+    position: absolute;
+    right: 21%;
+    bottom: 17%;
+    width: clamp(64px, 17%, 110px);
+    height: auto;
+    transform: translateZ(70px) rotate(-14deg);
+    transition: transform 0.9s var(--ease-out);
+  }
+
+  .feature:hover .sheet {
+    transform: rotateX(4deg) rotateY(-8deg) rotateZ(-1deg);
+  }
+
+  .feature:hover .stamp {
+    transform: translateZ(110px) rotate(-6deg) scale(1.06);
+  }
+
+  /* ---------- Featured project ---------- */
+  .feature {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(24px, 5vw, 88px);
+    align-items: stretch;
+  }
+
+  .feature__body {
+    display: flex;
+    flex-direction: column;
+    padding-top: 6px;
+  }
+
+  .feature__name {
+    margin-top: 14px;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(64px, 9.4vw, 160px);
+    line-height: 0.86;
+    letter-spacing: -0.035em;
+  }
+
+  .feature__headline {
+    max-width: 18ch;
+    margin-top: clamp(18px, 2.4vw, 32px);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(28px, 3.1vw, 50px);
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  .feature__summary {
+    max-width: 58ch;
+    margin-top: 20px;
+    color: #3d3d3a;
+    text-wrap: pretty;
+  }
+
+  .feature__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: clamp(28px, 4vw, 56px);
+    border-top: 1px solid var(--line-strong);
+  }
+
+  .feature__list li {
+    padding: 18px 24px 20px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .feature__list li:nth-child(even) {
+    padding-left: 24px;
+    border-left: 1px solid var(--line);
+  }
+
+  .feature__num {
+    display: block;
+    margin-bottom: 14px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+
+  .feature__list h4 {
+    margin: 0 0 6px;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(28px, 2.4vw, 38px);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  .feature__list p {
+    max-width: 30ch;
+    font-size: 15px;
+    color: var(--grey);
+  }
+
+  .feature__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px 32px;
+    margin-top: auto;
+    padding-top: clamp(24px, 3vw, 40px);
+  }
+
+  /* ---------- Earlier projects ---------- */
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(14px, 2vw, 28px);
+    margin-top: clamp(56px, 8vw, 120px);
+    padding-top: clamp(28px, 4vw, 56px);
+    border-top: 1px solid var(--line-strong);
+  }
+
+  .project__body {
+    padding: 18px 2px 0;
+  }
+
+  .project__name {
+    margin-top: 8px;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(44px, 5vw, 84px);
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+  }
+
+  .project__tagline {
+    max-width: 24ch;
+    margin-top: 12px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(24px, 2.1vw, 32px);
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+
+  .project__summary {
+    max-width: 46ch;
+    margin: 12px 0 20px;
+    color: #3d3d3a;
+    text-wrap: pretty;
+  }
+
+  .art {
+    width: min(62%, 340px);
+    height: auto;
+    overflow: visible;
+    transform: translateZ(40px);
+  }
+
+  .art__a,
+  .art__b {
+    stroke: currentColor;
+    stroke-width: 1.5;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform 1.1s var(--ease-out);
+  }
+
+  .art__lens {
+    fill: currentColor;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform 1.1s var(--ease-out);
+  }
+
+  .project:hover .art__a {
+    transform: translateX(14px);
+  }
+
+  .project:hover .art__b {
+    transform: translateX(-14px);
+  }
+
+  .project:hover .art__lens {
+    transform: scaleX(1.75);
+  }
+
+  .art__road {
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-dasharray: 2 8;
+    stroke-linecap: round;
+    opacity: 0.55;
+  }
+
+  .art__trip {
+    stroke: currentColor;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 14 100;
+    stroke-dashoffset: 14;
+    animation: trip 5.5s var(--ease) infinite;
+  }
+
+  @keyframes trip {
+    0% {
+      stroke-dashoffset: 14;
+    }
+    70%,
+    100% {
+      stroke-dashoffset: -100;
+    }
+  }
+
+  .art__stop {
+    fill: var(--s-bg);
+    stroke: currentColor;
+    stroke-width: 1.5;
+    transition: fill 0.9s var(--ease-out);
+  }
+
+  .art__end {
+    fill: currentColor;
+  }
+
+  .art__ping {
+    stroke: currentColor;
+    stroke-width: 1;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: ping 5.5s var(--ease-out) infinite;
+  }
+
+  @keyframes ping {
+    0%,
+    62% {
+      transform: scale(1);
+      opacity: 0;
+    }
+    66% {
+      opacity: 0.9;
+    }
+    100% {
+      transform: scale(3.6);
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .feature {
+      grid-template-columns: 1fr;
+    }
+
+    .stage--tall {
+      aspect-ratio: 5 / 4;
+      min-height: 0;
+    }
+
+    .sheet {
+      width: min(38%, 220px);
+    }
+  }
+
+  @media (max-width: 700px) {
+    .projects {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .stage--tall {
+      aspect-ratio: 1;
+    }
+
+    .sheet {
+      width: 46%;
+    }
+  }
+
+  @media (max-width: 460px) {
+    .feature__list {
+      grid-template-columns: 1fr;
+    }
+
+    .feature__list li:nth-child(even) {
+      padding-left: 0;
+      border-left: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .art__trip {
+      stroke-dashoffset: -50;
+    }
+  }
+</style>

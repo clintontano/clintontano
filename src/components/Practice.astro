@@ -1,0 +1,124 @@
+---
+import { practice } from '../data/site';
+---
+
+<section class="section section--ink practice" id="practice" aria-labelledby="practice-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="section-title" id="practice-title">What I <em>do</em></h2>
+      <p class="eyebrow">Three disciplines. One desk.</p>
+    </div>
+
+    <ol class="steps">
+      {
+        practice.map((item, i) => (
+          <li class="step" data-reveal data-tilt style={`--delay: ${i * 0.1}s`}>
+            <div class="step__inner" data-tilt-target>
+              <span class="step__no" aria-hidden="true">
+                0{i + 1}
+              </span>
+              <svg class="step__icon" viewBox="0 0 120 80" aria-hidden="true">
+                {item.id === 'design' && (
+                  <>
+                    <rect x="16" y="10" width="88" height="60" rx="2" />
+                    <path d="M30 56C44 20 76 20 90 56" />
+                    <path d="M60 29H38M60 29h22" />
+                    <rect x="27" y="53" width="6" height="6" />
+                    <rect x="87" y="53" width="6" height="6" />
+                    <rect x="57" y="26" width="6" height="6" />
+                    <circle cx="36" cy="29" r="2.5" />
+                    <circle cx="84" cy="29" r="2.5" />
+                  </>
+                )}
+                {item.id === 'build' && (
+                  <>
+                    <rect x="14" y="10" width="92" height="60" rx="4" />
+                    <path d="M14 24h92M22 17h2M30 17h2M38 17h2" />
+                    <path d="M28 38l10 8-10 8M46 56h20" />
+                    <path d="M86 34v14M79 41h14M81.500 36.500l9 9M90.500 36.500l-9 9" />
+                  </>
+                )}
+                {item.id === 'law' && (
+                  <>
+                    <path d="M60 10v56M42 66h36M24 22h72" />
+                    <path d="M24 22L11 50h26ZM96 22L83 50h26Z" />
+                    <path d="M11 50a13 6 0 0 0 26 0M83 50a13 6 0 0 0 26 0" />
+                  </>
+                )}
+              </svg>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(14px, 2vw, 24px);
+    perspective: 1400px;
+  }
+
+  .step__inner {
+    height: 100%;
+    padding: clamp(22px, 2.4vw, 34px);
+    border: 1px solid var(--line-inv-strong);
+    transform-style: preserve-3d;
+    transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition:
+      transform 0.7s var(--ease-out),
+      background-color 0.7s var(--ease-out);
+  }
+
+  .step:hover .step__inner {
+    background: rgb(243 242 238 / 0.04);
+  }
+
+  .step__no {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(84px, 9vw, 150px);
+    line-height: 0.8;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--paper);
+    transform: translateZ(50px);
+  }
+
+  .step__icon {
+    width: 120px;
+    height: 80px;
+    margin: 34px 0 30px;
+    fill: none;
+    stroke: var(--paper);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transform: translateZ(36px);
+  }
+
+  .step h3 {
+    margin-bottom: 10px;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(36px, 3.4vw, 54px);
+    line-height: 1;
+    transform: translateZ(24px);
+  }
+
+  .step p {
+    max-width: 34ch;
+    color: var(--grey-light);
+    transform: translateZ(12px);
+  }
+
+  @media (max-width: 900px) {
+    .steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

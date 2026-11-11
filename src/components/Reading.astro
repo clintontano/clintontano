@@ -1,0 +1,280 @@
+<section class="section reading" aria-labelledby="reading-title">
+  <div class="wrap reading__grid">
+    <div class="reading__head">
+      <p class="label">Off the clock</p>
+      <h2 class="section-title reading__title" id="reading-title">I <em>read.</em></h2>
+    </div>
+
+    <div class="reading__body" data-reveal>
+      <div class="book" role="img" aria-label="A hardback copy of Think and Grow Rich by Napoleon Hill">
+        <div class="book__body">
+          <div class="book__face book__front">
+            <div class="cover">
+              <div class="cover__top"><span>Shelf</span><span>No. 01</span></div>
+              <div class="cover__art"><span></span><span></span><span></span></div>
+              <div>
+                <div class="cover__title">Think and Grow Rich</div>
+                <div class="cover__sub">Napoleon Hill</div>
+              </div>
+            </div>
+          </div>
+          <div class="book__face book__back"></div>
+          <div class="book__face book__spine"><span>Think and Grow Rich</span></div>
+          <div class="book__face book__pages"></div>
+          <div class="book__face book__top"></div>
+          <div class="book__face book__bottom"></div>
+        </div>
+      </div>
+
+      <div class="reading__text">
+        <p class="reading__lede">
+          Mostly self-help, and the kind I can put to use. One book changed my life: <em>Think and Grow Rich.</em>
+        </p>
+        <p class="eyebrow reading__note">Napoleon Hill / Self-help</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reading__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    gap: clamp(32px, 5vw, 80px);
+    align-items: end;
+  }
+
+  .reading__title {
+    margin-top: 22px;
+    font-size: clamp(72px, 11vw, 190px);
+  }
+
+  .reading__body {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: clamp(28px, 4vw, 64px);
+    align-items: end;
+    padding-top: clamp(28px, 3vw, 40px);
+    border-top: 1px solid var(--line-strong);
+  }
+
+  .reading__lede {
+    max-width: 20ch;
+    font-family: var(--font-display);
+    font-size: clamp(30px, 3vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  .reading__note {
+    margin-top: 22px;
+    color: var(--grey);
+  }
+
+  /* ---------- CSS 3D hardback ---------- */
+  .book {
+    --w: clamp(150px, 15vw, 220px);
+    --h: calc(var(--w) * 1.4);
+    --d: calc(var(--w) * 0.14);
+    position: relative;
+    width: var(--w);
+    height: var(--h);
+    margin: 0 calc(var(--w) * 0.12) calc(var(--h) * 0.08) calc(var(--w) * 0.06);
+    perspective: calc(var(--w) * 7);
+    flex: none;
+  }
+
+  .book__body {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transform: rotateX(4deg) rotateY(-28deg);
+    transition: transform 0.9s var(--ease-out);
+  }
+
+  .book:hover .book__body {
+    transform: rotateX(2deg) rotateY(-8deg);
+  }
+
+  .book__face {
+    position: absolute;
+    backface-visibility: hidden;
+  }
+
+  .book__front,
+  .book__back {
+    inset: 0;
+    border-radius: 1px 3px 3px 1px;
+    background: var(--ink);
+  }
+
+  .book__front {
+    transform: translateZ(calc(var(--d) / 2));
+    overflow: hidden;
+    color: var(--paper);
+  }
+
+  .book__back {
+    transform: rotateY(180deg) translateZ(calc(var(--d) / 2));
+    background: #000;
+  }
+
+  .book__spine {
+    top: 0;
+    left: calc(50% - var(--d) / 2);
+    width: var(--d);
+    height: 100%;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    transform: rotateY(-90deg) translateZ(calc(var(--w) / 2));
+    background: #050505;
+  }
+
+  .book__spine span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color: var(--paper);
+    font-family: var(--font-mono);
+    font-size: max(7px, calc(var(--w) * 0.035));
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0.85;
+  }
+
+  .book__pages {
+    top: 2%;
+    left: calc(50% - var(--d) / 2);
+    width: calc(var(--d) - 2px);
+    height: 96%;
+    transform: rotateY(90deg) translateZ(calc(var(--w) / 2 - 3px));
+    background:
+      linear-gradient(90deg, rgb(0 0 0 / 0.18), transparent 20%, transparent 80%, rgb(0 0 0 / 0.12)),
+      repeating-linear-gradient(90deg, #f7f5ef 0 1px, #dad7cd 1px 2px);
+  }
+
+  .book__top,
+  .book__bottom {
+    left: 1%;
+    width: calc(98% - 3px);
+    height: calc(var(--d) - 2px);
+    top: calc(50% - var(--d) / 2);
+    background:
+      linear-gradient(180deg, rgb(0 0 0 / 0.12), transparent 30%, transparent 70%, rgb(0 0 0 / 0.1)),
+      repeating-linear-gradient(180deg, #f7f5ef 0 1px, #dad7cd 1px 2px);
+  }
+
+  .book__top {
+    transform: rotateX(90deg) translateZ(calc(var(--h) / 2 - 3px));
+  }
+
+  .book__bottom {
+    transform: rotateX(-90deg) translateZ(calc(var(--h) / 2 - 3px));
+  }
+
+  /* Hinge shadow and a soft sheen across the cover */
+  .book__front::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        90deg,
+        rgb(0 0 0 / 0.38) 0,
+        rgb(255 255 255 / 0.1) 1.6%,
+        rgb(0 0 0 / 0.06) 3.4%,
+        transparent 7%
+      ),
+      linear-gradient(115deg, transparent 38%, rgb(255 255 255 / 0.1) 50%, transparent 64%);
+  }
+
+  .book::after {
+    content: '';
+    position: absolute;
+    left: 8%;
+    right: -4%;
+    bottom: calc(var(--h) * -0.07);
+    height: calc(var(--h) * 0.08);
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgb(0 0 0 / 0.32), transparent);
+    filter: blur(6px);
+    pointer-events: none;
+  }
+
+  .cover {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: calc(var(--w) * 0.09) calc(var(--w) * 0.09) calc(var(--w) * 0.08) calc(var(--w) * 0.11);
+  }
+
+  .cover__top {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: max(6px, calc(var(--w) * 0.036));
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  .cover__art {
+    position: relative;
+    align-self: center;
+    justify-self: center;
+    width: 52%;
+    aspect-ratio: 1;
+  }
+
+  .cover__art span {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: max(1px, calc(var(--w) * 0.006)) solid currentColor;
+  }
+
+  .cover__art span:nth-child(2) {
+    inset: 16%;
+  }
+
+  .cover__art span:nth-child(3) {
+    inset: 32%;
+    background: currentColor;
+    border: 0;
+  }
+
+  .cover__title {
+    font-family: var(--font-display);
+    font-size: calc(var(--w) * 0.14);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+
+  .cover__sub {
+    margin-top: 0.7em;
+    font-family: var(--font-mono);
+    font-size: max(6px, calc(var(--w) * 0.036));
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 900px) {
+    .reading__grid {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .reading__body {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+  }
+</style>
