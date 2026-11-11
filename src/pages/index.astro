@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+import About from '../components/About.astro';
+import Work from '../components/Work.astro';
+import Practice from '../components/Practice.astro';
+import Reading from '../components/Reading.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base>
+  <Header />
+  <main id="main">
+    <Hero />
+    <Marquee />
+    <About />
+    <Work />
+    <Practice />
+    <Reading />
+    <Contact />
+  </main>
+  <Footer />
+</Base>
+
+<script>
+  import '../scripts/main';
+</script>
