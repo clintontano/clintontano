@@ -1,0 +1,278 @@
+---
+---
+
+<section class="hero" id="top" data-hero aria-labelledby="hero-title">
+  <canvas class="hero__canvas" data-hero-canvas aria-hidden="true"></canvas>
+
+  <!-- Static stand-in, shown only when WebGL is unavailable -->
+  <div class="hero__fallback" aria-hidden="true">
+    <svg viewBox="0 0 400 360" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M200 46v236M150 300h100M170 282h60M56 96l288-28"></path>
+      <path d="M56 96L22 208M56 96l34 112M344 68l-34 112M344 68l34 112"></path>
+      <path d="M12 208h88a44 22 0 0 1-88 0ZM300 180h88a44 22 0 0 1-88 0Z" fill="currentColor"></path>
+      <circle cx="200" cy="82" r="9" fill="currentColor"></circle>
+    </svg>
+  </div>
+
+  <div class="hero__inner wrap">
+    <div class="hero__meta eyebrow">
+      <span>Law / Design / AI</span>
+      <span class="hero__hint" data-hero-hint>Move the pointer to tip the scales</span>
+      <span>Accra, Ghana</span>
+    </div>
+
+    <h1 class="hero__title" id="hero-title">
+      <span class="line"><span>Clinton</span></span>
+      <span class="line"><span><em>Tano</em></span></span>
+    </h1>
+
+    <div class="hero__card">
+      <p>
+        Law graduate building at the intersection of law and AI. Founder of Decidendi, where practising legal experts
+        test how well models reason.
+      </p>
+      <div class="hero__ctas">
+        <a class="btn" href="#work">See the work <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+        <a class="btn btn--ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+
+    <a class="hero__scroll eyebrow" href="#about" aria-label="Scroll to the next section">
+      <span>Scroll</span><i aria-hidden="true"></i>
+    </a>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    height: 100vh;
+    height: 100svh;
+    min-height: 640px;
+    max-height: 1200px;
+    overflow: hidden;
+    background: var(--paper);
+  }
+
+  .hero__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.2s var(--ease-out);
+  }
+
+  .hero.is-ready .hero__canvas {
+    opacity: 1;
+  }
+
+  .hero__fallback {
+    display: none;
+  }
+
+  .hero.no-webgl .hero__canvas {
+    display: none;
+  }
+
+  .hero.no-webgl .hero__fallback {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center end;
+    padding-right: 10vw;
+    background: repeating-linear-gradient(0deg, transparent 0 22px, rgb(11 11 11 / 0.08) 22px 23px) bottom / 100% 45%
+      no-repeat;
+  }
+
+  .hero.no-webgl .hero__hint {
+    display: none;
+  }
+
+  .hero.no-webgl .hero__fallback svg {
+    width: clamp(220px, 34vw, 520px);
+    height: auto;
+  }
+
+  .hero__inner {
+    position: relative;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    padding-top: calc(var(--header-h) + 12px);
+    padding-bottom: 28px;
+    pointer-events: none;
+  }
+
+  .hero__inner a,
+  .hero__card {
+    pointer-events: auto;
+  }
+
+  .hero__meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+    animation: fade 1.2s var(--ease-out) 0.3s both;
+  }
+
+  .hero__title {
+    margin-top: clamp(14px, 3vh, 44px);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(72px, min(15.5vw, 30vh), 290px);
+    line-height: 0.84;
+    letter-spacing: -0.04em;
+  }
+
+  .hero__title .line {
+    display: block;
+    overflow: hidden;
+    padding: 0 0.06em 0.1em 0;
+    margin-bottom: -0.1em;
+  }
+
+  .hero__title .line:nth-child(2) {
+    padding-left: 0.34em;
+  }
+
+  .hero__title .line > span {
+    display: inline-block;
+    animation: rise 1.5s var(--ease-out) 0.15s both;
+  }
+
+  .hero__title .line:nth-child(2) > span {
+    animation-delay: 0.28s;
+  }
+
+  .hero__card {
+    grid-row: 4;
+    align-self: end;
+    justify-self: start;
+    max-width: 500px;
+    padding: 22px;
+    background: rgb(243 242 238 / 0.82);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--line-strong);
+    animation: fade 1.2s var(--ease-out) 0.6s both;
+  }
+
+  .hero__card p {
+    margin-bottom: 18px;
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+
+  .hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .hero__scroll {
+    position: absolute;
+    right: var(--gutter);
+    bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    background: var(--paper);
+    border: 1px solid var(--line-strong);
+    animation: fade 1.2s var(--ease-out) 1s both;
+  }
+
+  .hero__hint {
+    color: var(--grey);
+    transition: opacity 0.8s var(--ease-out);
+  }
+
+  .hero__hint.is-used {
+    opacity: 0;
+  }
+
+  .hero__scroll i {
+    display: block;
+    width: 56px;
+    height: 1px;
+    background: currentColor;
+    transform-origin: left;
+    animation: cue 2.6s var(--ease) infinite;
+  }
+
+  @keyframes rise {
+    from {
+      transform: translate3d(0, 108%, 0);
+    }
+  }
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes cue {
+    0% {
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    45% {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    55% {
+      transform: scaleX(1);
+      transform-origin: right;
+    }
+    100% {
+      transform: scaleX(0);
+      transform-origin: right;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .hero__title {
+      font-size: clamp(64px, min(25vw, 19vh), 190px);
+    }
+
+    .hero__card {
+      max-width: none;
+      justify-self: stretch;
+      padding: 18px;
+    }
+
+    .hero__scroll,
+    .hero__hint {
+      display: none;
+    }
+
+    .hero.no-webgl .hero__fallback {
+      place-items: center;
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero__ctas {
+      flex-wrap: nowrap;
+    }
+
+    .hero__ctas .btn {
+      flex: 1;
+      gap: 8px;
+      min-height: 46px;
+      padding: 0 12px;
+      font-size: 12px;
+    }
+  }
+
+  @media (hover: none), (prefers-reduced-motion: reduce) {
+    .hero__hint {
+      display: none;
+    }
+  }
+</style>
