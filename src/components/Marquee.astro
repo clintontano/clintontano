@@ -1,0 +1,63 @@
+---
+import { marquee } from '../data/site';
+---
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    {
+      [0, 1].map(() =>
+        marquee.map((item) => (
+          <>
+            <span>{item}</span>
+            <b />
+          </>
+        )),
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .marquee {
+    position: relative;
+    overflow: hidden;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .marquee__track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    padding: 18px 0;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    animation: marquee 44s linear infinite;
+  }
+
+  .marquee__track > :global(*) {
+    margin-right: 28px;
+  }
+
+  .marquee b {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--paper);
+  }
+
+  .marquee b:nth-of-type(even) {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px var(--paper);
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+</style>

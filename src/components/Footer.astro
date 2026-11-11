@@ -1,0 +1,148 @@
+---
+import { nav, site, socials } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-note">
+        <strong>Law, design and AI, from Accra.</strong>
+        <p>Clinton Tano is a law graduate, designer and builder, and the founder of Decidendi.</p>
+      </div>
+      <div class="footer-col">
+        <h2 class="eyebrow">Explore</h2>
+        <ul>
+          {
+            nav.map((item) => (
+              <li>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2 class="eyebrow">Elsewhere</h2>
+        <ul>
+          {
+            socials.map((s) => (
+              <li>
+                <a href={s.href} target="_blank" rel="noopener me">
+                  {s.label}
+                </a>
+              </li>
+            ))
+          }
+          <li><a href={`mailto:${site.email}`}>Email</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-word" aria-hidden="true">Clinton <em>Tano</em></p>
+    <div class="footer-base eyebrow">
+      <span>&copy; {year} Clinton Tano</span>
+      <span>Accra <span data-accra-time>GMT</span></span>
+      <a href="#top">Back to top &uarr;</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    position: relative;
+    background: var(--ink);
+    color: var(--paper);
+    padding: clamp(72px, 9vw, 120px) 0 28px;
+    border-top: 1px solid var(--line-inv);
+    overflow: hidden;
+  }
+
+  .site-footer ::selection {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(2, minmax(0, 1fr));
+    gap: 40px;
+    padding-bottom: clamp(56px, 8vw, 110px);
+  }
+
+  .footer-note {
+    max-width: 34ch;
+    color: var(--grey-light);
+  }
+
+  .footer-note strong {
+    display: block;
+    margin-bottom: 14px;
+    color: var(--paper);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(30px, 3vw, 42px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+
+  .footer-col h2 {
+    margin-bottom: 16px;
+    color: var(--grey-light);
+  }
+
+  .footer-col ul {
+    display: grid;
+    gap: 8px;
+  }
+
+  .footer-col a {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+    transition: background-size 0.5s var(--ease-out);
+  }
+
+  .footer-col a:hover {
+    background-size: 100% 1px;
+  }
+
+  .footer-word {
+    display: block;
+    width: 100%;
+    margin: 0 0 18px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: clamp(48px, 15.4vw, 280px);
+    line-height: 0.8;
+    letter-spacing: -0.065em;
+    white-space: nowrap;
+  }
+
+  .footer-word em {
+    font-size: 1.12em;
+    letter-spacing: -0.03em;
+  }
+
+  .footer-base {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line-inv);
+    color: var(--grey-light);
+  }
+
+  .footer-base a:hover {
+    color: var(--paper);
+  }
+
+  @media (max-width: 760px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-note {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

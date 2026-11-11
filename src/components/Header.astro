@@ -1,0 +1,252 @@
+---
+import { nav, site } from '../data/site';
+---
+
+<header class="site-header" data-header>
+  <a class="brand" href="#top" aria-label="Clinton Tano, back to top">
+    <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true">
+      <circle cx="32" cy="32" r="32" fill="currentColor"></circle>
+      <g fill="none" stroke="#000" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M32 19v26M23 45h18M15 26l34-5"></path>
+        <path d="M9.5 37a6 6 0 0 0 11 0M43.5 32a6 6 0 0 0 11 0"></path>
+        <path d="M15 26v10M49 21v10"></path>
+      </g>
+    </svg>
+    <span class="brand__word">Clinton <em>Tano</em></span>
+  </a>
+  <nav class="site-nav" aria-label="Main">
+    {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+  </nav>
+  <a class="pill-link" href={`mailto:${site.email}`}>Say hello <span aria-hidden="true">&rarr;</span></a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" data-menu-toggle>
+    <span class="menu-toggle__text">Menu</span><span class="menu-toggle__icon" aria-hidden="true"></span>
+  </button>
+</header>
+
+<div class="menu" id="menu" data-menu>
+  <nav aria-label="Mobile">
+    {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+  </nav>
+  <div class="menu__foot eyebrow">
+    <a href={`mailto:${site.email}`}>{site.email}</a>
+    <span>Accra, Ghana</span>
+  </div>
+</div>
+
+<style>
+  /* White text with mix-blend-mode: difference reads as ink over paper and paper over ink. */
+  .site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 200;
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 0 var(--gutter);
+    color: #fff;
+    mix-blend-mode: difference;
+    pointer-events: none;
+  }
+
+  .site-header > * {
+    pointer-events: auto;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-right: auto;
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .brand__mark {
+    width: 34px;
+    height: 34px;
+    transition: transform 0.8s var(--ease-out);
+  }
+
+  .brand:hover .brand__mark {
+    transform: rotate(-12deg);
+  }
+
+  .brand__word em {
+    font-size: 1.14em;
+    letter-spacing: -0.01em;
+    margin-left: 1px;
+  }
+
+  .site-nav {
+    display: flex;
+    gap: 28px;
+  }
+
+  .site-nav a,
+  .pill-link,
+  .menu-toggle {
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .site-nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s var(--ease-out);
+  }
+
+  .site-nav a:hover::after,
+  .site-nav a[aria-current='true']::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .pill-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    transition:
+      background-color 0.4s var(--ease-out),
+      color 0.4s var(--ease-out);
+  }
+
+  .pill-link:hover {
+    background: #fff;
+    color: #000;
+  }
+
+  .menu-toggle {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+  }
+
+  .menu-toggle__icon {
+    position: relative;
+    width: 22px;
+    height: 10px;
+  }
+
+  .menu-toggle__icon::before,
+  .menu-toggle__icon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1.5px;
+    background: currentColor;
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  .menu-toggle__icon::before {
+    top: 0;
+  }
+
+  .menu-toggle__icon::after {
+    bottom: 0;
+  }
+
+  :global(.menu-open) .menu-toggle__icon::before {
+    transform: translateY(4.25px) rotate(45deg);
+  }
+
+  :global(.menu-open) .menu-toggle__icon::after {
+    transform: translateY(-4.25px) rotate(-45deg);
+  }
+
+  /* Mobile menu overlay */
+  .menu {
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 32px;
+    padding: calc(var(--header-h) + 24px) var(--gutter) 32px;
+    background: var(--ink);
+    color: var(--paper);
+    clip-path: inset(0 0 100% 0);
+    visibility: hidden;
+    transition:
+      clip-path 0.7s var(--ease-out),
+      visibility 0s linear 0.7s;
+  }
+
+  :global(.menu-open) .menu {
+    clip-path: inset(0);
+    visibility: visible;
+    transition:
+      clip-path 0.7s var(--ease-out),
+      visibility 0s;
+  }
+
+  .menu nav {
+    display: grid;
+    gap: 4px;
+  }
+
+  .menu nav a {
+    font-family: var(--font-display);
+    font-size: clamp(44px, 13vw, 88px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .menu nav a:nth-child(even) {
+    font-style: italic;
+  }
+
+  .menu__foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line-inv);
+    color: var(--grey-light);
+  }
+
+  .menu__foot a {
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+
+  :global(body.menu-open) {
+    overflow: hidden;
+  }
+
+  @media (max-width: 860px) {
+    .site-nav,
+    .pill-link {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: inline-flex;
+    }
+
+    .brand__word {
+      font-size: 17px;
+    }
+  }
+</style>
