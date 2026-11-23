@@ -2,7 +2,7 @@
 
 Law graduate, designer and builder in Accra, Ghana.
 
-I studied law at the University of Ghana School of Law (class of 2026). I design interfaces in Figma and build apps with AI, so most of my work sits where law and technology meet.
+I studied law at the University of Ghana School of Law (class of 2026). I design interfaces in Figma and ship working software using AI-assisted development, so most of my work sits where law and technology meet.
 
 ## Now
 

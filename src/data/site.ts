@@ -25,7 +25,7 @@ export const marquee = [
   'Law graduate',
   'UI/UX designer',
   'Founder of Decidendi',
-  'Builds apps with AI',
+  'Ships software, AI-assisted',
   'Accra, Ghana',
   'University of Ghana School of Law, 2026',
 ] as const;
@@ -78,7 +78,7 @@ export const practice = [
   {
     id: 'build',
     title: 'Build',
-    body: 'I build apps with AI, taking an idea from a rough sketch to something people can open and use.',
+    body: 'I ship working software using AI-assisted development, taking an idea from first sketch to a released product people can use.',
   },
   {
     id: 'law',
