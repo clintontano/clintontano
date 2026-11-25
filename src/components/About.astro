@@ -1,0 +1,129 @@
+---
+import { Picture } from 'astro:assets';
+import portrait from '../assets/portrait.jpg';
+---
+
+<section class="section about" id="about" aria-label="About">
+  <div class="wrap about__grid">
+    <figure class="about__figure" data-reveal>
+      <div class="about__frame">
+        <Picture
+          src={portrait}
+          formats={['webp']}
+          widths={[480, 720, 960, 1280, portrait.width]}
+          sizes="(min-width: 900px) 42vw, 92vw"
+          alt="Clinton Tano seated in a wooden armchair in a warm study, wearing a brown pinstripe double-breasted suit. Shelves behind him hold books, a statue of Lady Justice, a gavel, a globe and an hourglass."
+          loading="lazy"
+          decoding="async"
+          quality={60}
+        />
+      </div>
+      <figcaption class="about__caption eyebrow">
+        <span>Fig. 01</span>
+        <span>Clinton Tano, Accra</span>
+      </figcaption>
+    </figure>
+
+    <div class="about__side">
+      <dl class="about__facts" data-reveal>
+        <div>
+          <dt class="eyebrow">Based</dt>
+          <dd>Accra, Ghana</dd>
+        </div>
+        <div>
+          <dt class="eyebrow">Studied</dt>
+          <dd>University of Ghana School of Law, class of 2026</dd>
+        </div>
+        <div>
+          <dt class="eyebrow">Now</dt>
+          <dd>Founder and CEO, RoomBerl and Decidendi</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: clamp(32px, 6vw, 110px);
+    align-items: end;
+  }
+
+  .about__frame {
+    position: relative;
+    aspect-ratio: 1482 / 2000;
+    overflow: hidden;
+    background: var(--paper-3);
+  }
+
+  .about__frame :global(picture) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Black and white until it is on screen, then the colour blooms in. */
+  .about__frame :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 30%;
+  }
+
+  :global(.js) .about__frame :global(img) {
+    filter: grayscale(1) contrast(1.05);
+    transition: filter 1.8s var(--ease-out) 0.35s;
+  }
+
+  :global(.js) .about__figure.is-in .about__frame :global(img) {
+    filter: none;
+  }
+
+  .about__caption {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 14px;
+    color: var(--grey);
+  }
+
+  .about__facts {
+    margin-top: clamp(36px, 5vw, 72px);
+    border-top: 1px solid var(--line-strong);
+  }
+
+  .about__facts > div {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 16px;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .about__facts dt {
+    color: var(--grey);
+  }
+
+  @media (max-width: 860px) {
+    .about__grid {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .about__facts > div {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.js) .about__frame :global(img) {
+      filter: none;
+    }
+  }
+</style>
