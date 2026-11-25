@@ -1,11 +1,12 @@
 export const site = {
   name: 'Clinton Tano',
   url: 'https://clintontano.vercel.app',
-  title: 'Clinton Tano | Law, design and AI from Accra',
+  title: 'Clinton Tano | Law & Tech from Accra',
   description:
-    'Clinton Tano is a law graduate, designer and builder in Accra, Ghana. Founder of Decidendi, where practising legal experts test how well AI models reason about law.',
+    'Clinton Tano is a Ghanaian law graduate building at the intersection of law and technology in Accra. Founder and CEO of RoomBerl and Decidendi.',
   location: 'Accra, Ghana',
   email: 'clinton@decidendi.legal',
+  booking: 'https://calendly.com/tanoclinton167/30min',
 } as const;
 
 export const socials = [
@@ -15,26 +16,17 @@ export const socials = [
 ] as const;
 
 export const nav = [
-  { label: 'About', href: '#about' },
   { label: 'Work', href: '#work' },
   { label: 'Practice', href: '#practice' },
   { label: 'Contact', href: '#contact' },
-] as const;
-
-export const marquee = [
-  'Law graduate',
-  'UI/UX designer',
-  'Founder of Decidendi',
-  'Ships software, AI-assisted',
-  'Accra, Ghana',
-  'University of Ghana School of Law, 2026',
 ] as const;
 
 export const decidendi = {
   name: 'Decidendi',
   href: 'https://decidendi.legal',
   domain: 'decidendi.legal',
-  role: 'Founder',
+  role: 'Founder and CEO',
+  period: 'August 2026 to present',
   headline: 'Legal reasoning is where models quietly fail.',
   summary:
     'Decidendi tests how well AI models handle legal reasoning. Practising legal experts across Ghana, Nigeria, Kenya and the wider Commonwealth do the judging, so AI labs and annotation primes get expert coverage for African and Commonwealth jurisdictions.',
@@ -47,27 +39,15 @@ export const decidendi = {
   jurisdictions: ['Ghana', 'Nigeria', 'Kenya', 'Commonwealth'],
 } as const;
 
-export const earlier = [
-  {
-    id: 'roomberl',
-    name: 'RoomBerl',
-    href: 'https://roomberl.com',
-    domain: 'roomberl.com',
-    kicker: 'Roommate matching',
-    tagline: 'Africa’s first AI-powered university roommate matching system.',
-    summary:
-      'Pairs students with compatible roommates by personality, and integrates with university housing offices.',
-  },
-  {
-    id: 'lorryfare',
-    name: 'Lorryfare',
-    href: 'https://lorryfare.com',
-    domain: 'lorryfare.com',
-    kicker: 'Transit, Accra',
-    tagline: 'Know when the next trotro is arriving.',
-    summary: 'Real-time tracking for shuttles and trotros. Launching in Accra, with the waitlist open now.',
-  },
-] as const;
+export const roomberl = {
+  name: 'RoomBerl',
+  href: 'https://roomberl.com',
+  domain: 'roomberl.com',
+  role: 'Founder and CEO',
+  period: 'April 2024 to present',
+  tagline: 'Africa’s first AI-powered university roommate matching system.',
+  summary: 'Pairs students with compatible roommates by personality, and integrates with university housing offices.',
+} as const;
 
 export const practice = [
   {

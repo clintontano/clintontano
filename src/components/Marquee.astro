@@ -1,19 +1,11 @@
 ---
-import { marquee } from '../data/site';
+// A band of alternating solid and hollow dots. Two identical halves make the loop seamless.
+const dots = Array.from({ length: 56 });
 ---
 
 <div class="marquee" aria-hidden="true">
   <div class="marquee__track">
-    {
-      [0, 1].map(() =>
-        marquee.map((item) => (
-          <>
-            <span>{item}</span>
-            <b />
-          </>
-        )),
-      )
-    }
+    {dots.map(() => <b />)}
   </div>
 </div>
 
@@ -29,18 +21,12 @@ import { marquee } from '../data/site';
     display: flex;
     align-items: center;
     width: max-content;
-    padding: 18px 0;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    white-space: nowrap;
+    padding: 24px 0;
     animation: marquee 44s linear infinite;
   }
 
   .marquee__track > :global(*) {
-    margin-right: 28px;
+    margin-right: 56px;
   }
 
   .marquee b {

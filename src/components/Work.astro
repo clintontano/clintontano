@@ -1,12 +1,12 @@
 ---
-import { decidendi, earlier } from '../data/site';
+import { decidendi, roomberl } from '../data/site';
 ---
 
 <section class="section section--tint work" id="work" aria-labelledby="work-title">
   <div class="wrap">
     <div class="section-head">
       <h2 class="section-title" id="work-title">Selected <em>work</em></h2>
-      <p class="eyebrow">01 now / 02 before</p>
+      <p class="eyebrow">Founder and CEO</p>
     </div>
 
     <article class="feature" data-reveal>
@@ -46,7 +46,7 @@ import { decidendi, earlier } from '../data/site';
       </div>
 
       <div class="feature__body">
-        <p class="kicker">No. 001 / {decidendi.role} / Legal reasoning evaluation</p>
+        <p class="kicker">No. 001 / {decidendi.role} / {decidendi.period}</p>
         <h3 class="feature__name">{decidendi.name}</h3>
         <p class="feature__headline">“{decidendi.headline}”</p>
         <p class="feature__summary">{decidendi.summary}</p>
@@ -72,48 +72,32 @@ import { decidendi, earlier } from '../data/site';
       </div>
     </article>
 
-    <div class="projects">
-      {
-        earlier.map((project, i) => (
-          <article class="project" data-reveal style={`--delay: ${i * 0.1}s`}>
-            <div class="stage" data-tilt>
-              <span class="stage__tag">Before</span>
-              <span class="stage__no" aria-hidden="true">00{i + 2}</span>
-              <div class="stage__art" aria-hidden="true">
-                {project.id === 'roomberl' ? (
-                  <svg class="art art--match" viewBox="0 0 320 180" fill="none">
-                    <circle class="art__a" cx="128" cy="90" r="58" />
-                    <circle class="art__b" cx="192" cy="90" r="58" />
-                    <path class="art__lens" d="M160 41.6a58 58 0 0 1 0 96.8a58 58 0 0 1 0-96.8Z" />
-                  </svg>
-                ) : (
-                  <svg class="art art--route" viewBox="0 0 320 180" fill="none">
-                    <path class="art__road" d="M20 132C76 132 84 52 140 52s70 74 118 74 30-52 44-74" />
-                    <path class="art__trip" pathLength="100" d="M20 132C76 132 84 52 140 52s70 74 118 74 30-52 44-74" />
-                    <circle class="art__stop" cx="20" cy="132" r="5" />
-                    <circle class="art__stop" cx="140" cy="52" r="5" />
-                    <circle class="art__stop" cx="258" cy="126" r="5" />
-                    <circle class="art__ping" cx="302" cy="52" r="7" />
-                    <circle class="art__end" cx="302" cy="52" r="7" />
-                  </svg>
-                )}
-              </div>
-            </div>
-            <div class="project__body">
-              <p class="kicker">
-                No. 00{i + 2} / Worked on / {project.kicker}
-              </p>
-              <h3 class="project__name">{project.name}</h3>
-              <p class="project__tagline">{project.tagline}</p>
-              <p class="project__summary">{project.summary}</p>
-              <a class="btn btn--ghost btn--sm" href={project.href} target="_blank" rel="noopener">
-                Visit {project.domain} <span class="btn__arrow" aria-hidden="true">&rarr;</span>
-              </a>
-            </div>
-          </article>
-        ))
-      }
-    </div>
+    <article class="feature feature--flip" data-reveal>
+      <div class="stage stage--tall" data-tilt>
+        <span class="stage__tag">Now</span>
+        <span class="stage__no" aria-hidden="true">002</span>
+        <div class="stage__art" aria-hidden="true">
+          <svg class="art" viewBox="0 0 320 180" fill="none">
+            <circle class="art__a" cx="128" cy="90" r="58"></circle>
+            <circle class="art__b" cx="192" cy="90" r="58"></circle>
+            <path class="art__lens" d="M160 41.6a58 58 0 0 1 0 96.8a58 58 0 0 1 0-96.8Z"></path>
+          </svg>
+        </div>
+      </div>
+
+      <div class="feature__body">
+        <p class="kicker">No. 002 / {roomberl.role} / {roomberl.period}</p>
+        <h3 class="feature__name">{roomberl.name}</h3>
+        <p class="feature__headline feature__headline--wide">{roomberl.tagline}</p>
+        <p class="feature__summary">{roomberl.summary}</p>
+
+        <div class="feature__foot">
+          <a class="btn" href={roomberl.href} target="_blank" rel="noopener">
+            Visit {roomberl.domain} <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -165,7 +149,6 @@ import { decidendi, earlier } from '../data/site';
   }
 
   .feature:hover .stage,
-  .project:hover .stage,
   .stage.is-active {
     --s-bg: var(--ink);
     --s-fg: var(--paper);
@@ -338,44 +321,14 @@ import { decidendi, earlier } from '../data/site';
     padding-top: clamp(24px, 3vw, 40px);
   }
 
-  /* ---------- Earlier projects ---------- */
-  .projects {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(14px, 2vw, 28px);
+  .feature + .feature {
     margin-top: clamp(56px, 8vw, 120px);
     padding-top: clamp(28px, 4vw, 56px);
     border-top: 1px solid var(--line-strong);
   }
 
-  .project__body {
-    padding: 18px 2px 0;
-  }
-
-  .project__name {
-    margin-top: 8px;
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(44px, 5vw, 84px);
-    line-height: 0.92;
-    letter-spacing: -0.03em;
-  }
-
-  .project__tagline {
+  .feature__headline--wide {
     max-width: 24ch;
-    margin-top: 12px;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: clamp(24px, 2.1vw, 32px);
-    line-height: 1.06;
-    text-wrap: balance;
-  }
-
-  .project__summary {
-    max-width: 46ch;
-    margin: 12px 0 20px;
-    color: #3d3d3a;
-    text-wrap: pretty;
   }
 
   .art {
@@ -401,76 +354,26 @@ import { decidendi, earlier } from '../data/site';
     transition: transform 1.1s var(--ease-out);
   }
 
-  .project:hover .art__a {
+  .feature:hover .art__a {
     transform: translateX(14px);
   }
 
-  .project:hover .art__b {
+  .feature:hover .art__b {
     transform: translateX(-14px);
   }
 
-  .project:hover .art__lens {
+  .feature:hover .art__lens {
     transform: scaleX(1.75);
   }
 
-  .art__road {
-    stroke: currentColor;
-    stroke-width: 1.5;
-    stroke-dasharray: 2 8;
-    stroke-linecap: round;
-    opacity: 0.55;
-  }
-
-  .art__trip {
-    stroke: currentColor;
-    stroke-width: 3;
-    stroke-linecap: round;
-    stroke-dasharray: 14 100;
-    stroke-dashoffset: 14;
-    animation: trip 5.5s var(--ease) infinite;
-  }
-
-  @keyframes trip {
-    0% {
-      stroke-dashoffset: 14;
+  /* The second project sits the other way round on wide screens */
+  @media (min-width: 901px) {
+    .feature--flip {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
     }
-    70%,
-    100% {
-      stroke-dashoffset: -100;
-    }
-  }
 
-  .art__stop {
-    fill: var(--s-bg);
-    stroke: currentColor;
-    stroke-width: 1.5;
-    transition: fill 0.9s var(--ease-out);
-  }
-
-  .art__end {
-    fill: currentColor;
-  }
-
-  .art__ping {
-    stroke: currentColor;
-    stroke-width: 1;
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: ping 5.5s var(--ease-out) infinite;
-  }
-
-  @keyframes ping {
-    0%,
-    62% {
-      transform: scale(1);
-      opacity: 0;
-    }
-    66% {
-      opacity: 0.9;
-    }
-    100% {
-      transform: scale(3.6);
-      opacity: 0;
+    .feature--flip .stage {
+      order: 2;
     }
   }
 
@@ -490,11 +393,6 @@ import { decidendi, earlier } from '../data/site';
   }
 
   @media (max-width: 700px) {
-    .projects {
-      grid-template-columns: 1fr;
-      gap: 48px;
-    }
-
     .stage--tall {
       aspect-ratio: 1;
     }
@@ -512,12 +410,6 @@ import { decidendi, earlier } from '../data/site';
     .feature__list li:nth-child(even) {
       padding-left: 0;
       border-left: 0;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .art__trip {
-      stroke-dashoffset: -50;
     }
   }
 </style>
