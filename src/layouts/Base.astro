@@ -3,6 +3,7 @@ import '../styles/global.css';
 import serifUrl from '@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2?url';
 import serifItalicUrl from '@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2?url';
 import sansUrl from '@fontsource-variable/inter-tight/files/inter-tight-latin-wght-normal.woff2?url';
+import Analytics from '@vercel/analytics/astro';
 import { site, socials } from '../data/site';
 
 interface Props {
@@ -80,5 +81,6 @@ const jsonLd = {
     <a class="skip-link" href="#main">Skip to content</a>
     <slot />
     <div class="grain" aria-hidden="true"></div>
+    <Analytics />
   </body>
 </html>
