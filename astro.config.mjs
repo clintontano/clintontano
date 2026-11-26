@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://clintontano.vercel.app',
+  site: 'https://clintontano.com',
   compressHTML: true,
   build: {
     inlineStylesheets: 'auto',

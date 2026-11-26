@@ -1,6 +1,6 @@
 export const site = {
   name: 'Clinton Tano',
-  url: 'https://clintontano.vercel.app',
+  url: 'https://clintontano.com',
   title: 'Clinton Tano | Law & Tech from Accra',
   description:
     'Clinton Tano is a Ghanaian law graduate building at the intersection of law and technology in Accra. Founder and CEO of RoomBerl and Decidendi.',

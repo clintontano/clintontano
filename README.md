@@ -13,7 +13,7 @@ Founder and CEO of two companies.
 
 ## Find me
 
-[clintontano.vercel.app](https://clintontano.vercel.app) · [Email](mailto:clinton@decidendi.legal) · [X](https://x.com/clinton_tano) · [LinkedIn](https://linkedin.com/in/clinton-tano-916805290/) · [Book a call](https://calendly.com/tanoclinton167/30min)
+[clintontano.com](https://clintontano.com) · [Email](mailto:clinton@decidendi.legal) · [X](https://x.com/clinton_tano) · [LinkedIn](https://linkedin.com/in/clinton-tano-916805290/) · [Book a call](https://calendly.com/tanoclinton167/30min)
 
 ---
 
